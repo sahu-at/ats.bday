@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #c43a3e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      color: #422a2d;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      padding-top: 100px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1, h2 {
+      font-size: 60px;
+      margin-bottom: 10px;
+      animation: bounce 1s infinite;
+      color: #fff;
+      text-shadow:
+        1px 1px 0 #c43a3e,
+        2px 2px 0 #a82a2d,
+        3px 3px 0 #882020,
+        4px 4px 0 #661616;
+      transform: perspective(500px) rotateX(5deg);
+    }
+
+    .btn {
+      background-color: #fff;
+      color: #c90936;
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      margin: 10px;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    a.btn {
+      display: inline-block;
+      text-decoration: none;
+      background-color: #fff;
+      color: #ff6f91;
+      padding: 15px 30px;
+      font-size: 20px;
+      border-radius: 30px;
+      transition: transform 0.3s ease;
+    }
+
+    a.btn:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      animation: fall 3s infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% { top: -10px; opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
+    }
+
+    .balloon-container {
+      position: fixed;
+      top: 100%;
+      width: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .balloon {
+      position: absolute;
+      width: 40px;
+      height: 60px;
+      background: radial-gradient(circle, #ff4081, #ff80ab);
+      border-radius: 50% 50% 45% 45%;
+      animation: floatUp 10s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { top: 100%; opacity: 0; }
+      50% { opacity: 1; }
+      100% { top: -100px; opacity: 0; }
+    }
+
+    #popup {
+      display: none;
+      margin-top: 20px;
+      font-size: 22px;
+      color: #fff;
+      background-color: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 20px;
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Typewriter Styling */
+    #typewriter {
+      font-size: 24px;
+      color: #fff;
+      margin-top: 40px;
+      padding: 20px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 20px;
+      background-color: rgba(0,0,0,0.3);
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      overflow: hidden;
+      border-right: 3px solid #fff;
+      animation: blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes blink-caret {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎉 Happy Birthday Julee ❤️🎉</h1>
+    <h2>Welcome to the celebration!</h2>
+
+    <a href="julii.html" target="_blank" class="btn" onclick="burstConfetti(); alert('Let’s party! 🎂')">Enter Party Zone</a>
+    <button class="btn" onclick="showMessage()">💌 Birthday Message</button>
+
+    <div id="popup">
+      Julee, you make every moment sparkle! Wishing you joy, laughter, and endless cake 🎂✨
+    </div>
+
+    <!-- Typewriter Message -->
+    <div id="typewriter"></div>
+  </div>
+
+  <!-- Confetti Generator -->
+  <script>
+    for (let i = 0; i < 100; i++) {
+      let confetti = document.createElement("div");
+      confetti.className = "confetti";
+      confetti.style.left = Math.random() * window.innerWidth + "px";
+      confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+      confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      document.body.appendChild(confetti);
+    }
+
+    function showMessage() {
+      document.getElementById("popup").style.display = "block";
+    }
+
+    function burstConfetti() {
+      for (let i = 0; i < 50; i++) {
+        let confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.top = Math.random() * window.innerHeight + "px";
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.animationDuration = (Math.random() * 2 + 1) + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+      }
+    }
+
+    // Typewriter Effect
+    const message = "Dear Julee,\n\nWishing you a day filled with love, laughter, and unforgettable memories. You light up every room you enter—and today, we celebrate the beautiful soul that you are. 🎂💖\n\nHappy Birthday! 🎉";
+    let i = 0;
+    function typeWriter() {
+      if (i < message.length) {
+        document.getElementById("typewriter").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      }
+    }
+    window.onload = typeWriter;
+  </script>
+
+  <!-- Floating Balloons -->
+  <div class="balloon-container">
+    <div class="balloon" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="balloon" style="left: 30%; animation-delay: 2s;"></div>
+    <div class="balloon" style="left: 50%; animation-delay: 4s;"></div>
+    <div class="balloon" style="left: 70%; animation-delay: 6s;"></div>
+    <div class="balloon" style="left: 90%; animation-delay: 8s;"></div>
+  </div>
+
+</body>
+</html> 
